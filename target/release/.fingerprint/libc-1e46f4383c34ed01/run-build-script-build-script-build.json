@@ -1,0 +1,1 @@
+{"rustc":5475348352969617417,"features":"","target":0,"profile":0,"path":0,"deps":[[12253354796554471582,"build_script_build",false,1711071215410382517]],"local":[{"RerunIfChanged":{"output":"release/build/libc-1e46f4383c34ed01/output","paths":["build.rs"]}}],"rustflags":[],"metadata":0,"config":0,"compile_kind":0}

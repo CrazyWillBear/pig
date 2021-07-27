@@ -1,0 +1,12 @@
+/home/will/code-projects/pig/target/debug/deps/term-524c38f3a83ca143.rmeta: /home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/lib.rs /home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/mod.rs /home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/searcher.rs /home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parser/compiled.rs /home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parser/names.rs /home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parm.rs
+
+/home/will/code-projects/pig/target/debug/deps/libterm-524c38f3a83ca143.rlib: /home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/lib.rs /home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/mod.rs /home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/searcher.rs /home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parser/compiled.rs /home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parser/names.rs /home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parm.rs
+
+/home/will/code-projects/pig/target/debug/deps/term-524c38f3a83ca143.d: /home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/lib.rs /home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/mod.rs /home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/searcher.rs /home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parser/compiled.rs /home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parser/names.rs /home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parm.rs
+
+/home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/lib.rs:
+/home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/mod.rs:
+/home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/searcher.rs:
+/home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parser/compiled.rs:
+/home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parser/names.rs:
+/home/will/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parm.rs:

@@ -1,0 +1,14 @@
+[package]
+name = "pig"
+version = "0.0.1"
+authors = ["CaptainBear <crazywillbear@gmail.com>"]
+license = "MIT"
+repository = "https://github.com/CrazyWillBear/Pig"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+git2 = "0.13.20"
+users = "0.11"
+spinners = "2.0.0"
