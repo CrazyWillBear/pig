@@ -5,7 +5,7 @@ use std::thread::sleep;
 use std::time::Duration;
 
 pub fn title_loading(text: &str) {
-    let sp = Spinner::new(&Spinners::Line, format!("\n>> {}", text));
+    let _sp = Spinner::new(&Spinners::Line, format!("\n>> {}", text));
 }
 
 pub fn title(text: &str) {
@@ -14,7 +14,7 @@ pub fn title(text: &str) {
 
 
 pub fn subtitle_loading(text: &str) {
-    let sp = Spinner::new(&Spinners::Line, format!("\n     > {}", text));
+    let _sp = Spinner::new(&Spinners::Line, format!("\n     > {}", text));
 }
 
 pub fn subtitle(text: &str) {
