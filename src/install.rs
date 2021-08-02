@@ -1,13 +1,16 @@
 use crate::errors;
 use crate::text;
+use crate::config;
 use git2::Repository;
 use std::io::{self, Write};
-use users;
+use whoami;
 use std::process::{Command, Stdio};
+use std::path::Path;
 
 pub fn clone_package(repo_name: &str) {
-    let user = users::get_user_by_uid(users::get_current_uid()).unwrap();
-    let path: &str = &format!("/home/{}/.cache/pig/{}", user.name().to_str().unwrap(), repo_name.replace("/", "-"));
+    let user = whoami::username();
+    let repo_site = config::get_repo_site();
+    let path: &str = &format!("/home/{}/.cache/pig/{}", user, repo_name.replace("/", "-"));
 
     text::title_loading("Checking if repository is already cloned...");
     if std::path::Path::new(path).exists() {
@@ -18,7 +21,7 @@ pub fn clone_package(repo_name: &str) {
     }
 
     text::title_loading("Cloning Git repo...");
-    let url: &str = &format!("https://github.com/{}", repo_name);
+    let url: &str = &format!("{:?}/{}", repo_site, repo_name);
     let _repo = match Repository::clone(url, path) {
         Ok(repo) => repo,
         Err(e) => {
@@ -30,8 +33,8 @@ pub fn clone_package(repo_name: &str) {
 }
 
 pub fn install_make_package(repo_name: &str) {
-    let user = users::get_user_by_uid(users::get_current_uid()).unwrap();
-    let path: &str = &format!("/home/{}/.cache/pig/{}", user.name().to_str().unwrap(), repo_name.replace("/", "-"));
+    let user = whoami::username();
+    let path: &str = &format!("/home/{}/.cache/pig/{}", user, repo_name.replace("/", "-"));
 
     text::subtitle_loading("Running Makefile...");
     println!("-=-=-=-=-");
@@ -54,8 +57,8 @@ pub fn install_make_package(repo_name: &str) {
 }
 
 pub fn install_cmake_package (repo_name: &str) {
-    let user = users::get_user_by_uid(users::get_current_uid()).unwrap();
-    let path: &str = &format!("/home/{}/.cache/pig/{}", user.name().to_str().unwrap(), repo_name.replace("/", "-"));
+    let user = whoami::username();
+    let path: &str = &format!("/home/{}/.cache/pig/{}", user, repo_name.replace("/", "-"));
 
     text::subtitle_loading("Running CMake...\n");
     println!("-=-=-=-=-");
@@ -76,6 +79,7 @@ pub fn install_cmake_package (repo_name: &str) {
 
 
     let mut need_root = false;
+
     let output = Command::new("make")
         .current_dir(format!("{}", path))
         .arg("install")
@@ -98,4 +102,36 @@ pub fn install_cmake_package (repo_name: &str) {
     }
 
     text::subtitle("Ran CMake");
+}
+
+pub fn install_sh_package(repo_name: &str, script_name: &str) {
+    let user = whoami::username();
+    let path: &str = &format!("/home/{}/.cache/pig/{}", user, repo_name.replace("/", "-"));
+
+    text::subtitle_loading("Running Install.sh...");
+    println!("-=-=-=-=-");
+
+    let mut need_root = false;
+
+    let output = Command::new(format!("{}/{}", path, script_name))
+        .current_dir(format!("{}", path))
+        .output()
+        .expect("failed to execute process");
+
+    if String::from_utf8_lossy(&output.stderr).contains("Permission denied.") {
+        need_root = true;
+    }
+
+    io::stdout().write_all(&output.stdout).unwrap();
+
+    if need_root {
+        let sudo_cmd = Command::new("sudo")
+            .current_dir(format!("{}", path))
+            .arg("Install.sh")
+            .output()
+            .expect("failed to execute process");
+        io::stdout().write_all(&sudo_cmd.stdout).unwrap();
+    }
+
+    text::subtitle("Ran Install.sh");
 }

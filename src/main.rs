@@ -1,19 +1,25 @@
 mod install;
 mod errors;
 mod text;
+mod config;
 
-use users;
+use whoami;
 use std::process::Command;
 use std::path::Path;
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
-    let command: &str = args[1].as_str();
-    let user = users::get_user_by_uid(users::get_current_uid()).unwrap();
+    let user = whoami::username();
+
+    if !Path::new(&format!("/home/{}/.config/pig", user)).exists() {
+        config::make_config();
+    }
 
     if args.len() < 3 {
         errors::err(1);
     }
+
+    let command: &str = args[1].as_str();
 
     match command {
         "install" => {
@@ -21,7 +27,7 @@ fn main() {
 
             // check for Makefile
             text::title_loading("Checking for Makefile...");
-            if Path::new(&format!("/home/{}/.cache/pig/{}/Makefile", user.name().to_str().unwrap(), args[2].replace("/", "-"))).exists() {
+            if Path::new(&format!("/home/{}/.cache/pig/{}/Makefile", user, args[2].replace("/", "-"))).exists() {
                 text::title("Makefile exists");
                 install::install_make_package(args[2].as_str())
             }
@@ -36,9 +42,20 @@ fn main() {
                 errors::err(3);
             }
 
-            if Path::new(&format!("/home/{}/.cache/pig/{}/CMakeLists.txt", user.name().to_str().unwrap(), args[2].replace("/", "-"))).exists() {
+            if Path::new(&format!("/home/{}/.cache/pig/{}/CMakeLists.txt", user, args[2].replace("/", "-"))).exists() {
                 text::title("CMakeLists exists");
                 install::install_cmake_package(args[2].as_str())
+            }
+
+            text::title_loading("Checking for Install.sh script...");
+            if Path::new(&format!("/home/{}/.cache/pig/{}/Install.sh", user, args[2].replace("/", "-"))).exists() {
+                text::title("Install.sh exists");
+                install::install_sh_package(args[2].as_str(), "Install.sh")
+            }
+
+            if Path::new(&format!("/home/{}/.cache/pig/{}/install.sh", user, args[2].replace("/", "-"))).exists() {
+                text::title("Install.sh exists");
+                install::install_sh_package(args[2].as_str(), "install.sh")
             }
         }
         _ => {
