@@ -21,7 +21,7 @@ pub fn clone_package(repo_name: &str) {
     }
 
     text::title_loading("Cloning Git repo...");
-    let url: &str = &format!("{:?}/{}", repo_site, repo_name);
+    let url: &str = &format!("{}/{}", repo_site, repo_name);
     let _repo = match Repository::clone(url, path) {
         Ok(repo) => repo,
         Err(e) => {

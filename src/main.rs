@@ -47,6 +47,7 @@ fn main() {
                 install::install_cmake_package(args[2].as_str())
             }
 
+            // check for Install.sh
             text::title_loading("Checking for Install.sh script...");
             if Path::new(&format!("/home/{}/.cache/pig/{}/Install.sh", user, args[2].replace("/", "-"))).exists() {
                 text::title("Install.sh exists");
